@@ -1,0 +1,352 @@
+\documentclass[11pt,a4paper]{article}
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}   % Setup for page and paper dimensions
+\usepackage{wrapfig}
+\usepackage{caption}
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  tableposition=top
+}
+
+\usepackage[swedish]{babel}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black,
+    pdfborder = {0 0 0}
+}
+%\usepackage{verbatim} 
+%\usepackage{fancyvrb}
+\usepackage{subcaption}
+\usepackage{verbatimbox}
+\usepackage{multicol}
+\usepackage{graphicx}   
+\usepackage{lipsum}  
+\usepackage{amsmath}
+\usepackage{listings}
+
+%\renewcommand{\figurename}{Figur}
+%\renewcommand{\tablename}{Tabell}
+
+%\addto\captionsenglish{%
+%  \renewcommand\tablename{Tabell}
+%}
+%\addto\captionsenglish{%
+%  \renewcommand\figurename{Figur}
+%}
+%\renewcommand\figurename{Figur}
+   
+\title{Laborationer Termodynamik Grund}
+\author{Alf Heidemark, Pontus Ösbjer, Peter Larsson, Lasse Karagiannis}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+ 
+\begin{document}
+\maketitle
+%\lipsum[1]
+\section{Sammanfattning}
+Laborationen bestod av två delar. Den första delen handlade om att utifrån
+mätdata inhämtade från tre adiabatiska kompressioner bestämma $\kappa$ genom
+kurvanpassning och den andra delen bestod i att analysera mätdata från en 
+Sterling-maskin som kördes såsom värmemotor och som kylmaskin.
+Avseende att göra anpassningen så rekommenderades Excel men vi valde att automatisera
+arbetet genom ett optimeringsskript som hittades på ett matlabforum\footnotemark{}.
+\footnotetext{\url{https://se.mathworks.com/matlabcentral/answers/344980-curve-fitting-loglog-plot}}
+Resultatet av anpassningen av de tre mätförsöken som \bf{inte}\rm ~ses i figuren nedan och vi förklarar matlabkoden
+längre ner i labbrapporten.
+Avseende Sterlingmaskinen så var uppgiften att generera ett antal plottar som redovisas
+i denna rapport.
+
+
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.3\textwidth}
+    \includegraphics[width=\textwidth]{fig1.eps}
+    \caption{Mätserie 1: $\kappa =1.3815$}
+    \label{fig:first}
+\end{subfigure}
+%\hfill
+\begin{subfigure}{0.3\textwidth}
+    \includegraphics[width=\textwidth]{fig2.eps}
+    \caption{Mätserie 2: $\kappa=1.3848$}
+    \label{fig:second}
+\end{subfigure}
+%\hfill
+\begin{subfigure}{0.3\textwidth}
+    \includegraphics[width=\textwidth]{fig3.eps}
+    \caption{Mätserie 3: $\kappa=1.3866$}
+    \label{fig:third}
+\end{subfigure}
+        
+\caption{Anpassning av $n$ i $p=\frac{C}{V^n}$}
+\label{fig:figures}
+\end{figure}
+
+
+\begin{multicols}{2}
+\subsection{Anpassning av mätdata}
+\bigskip
+Koden för anpassningen är följande och upprepas
+för att åstadkomma kurvanpassningen med plottar för repsektive
+volym-tryck par därför visas endast koden för den första grafen.
+Resterande åstadkommes med upprepning. Inläsningen och konditioneringen
+av data visas dock fullständigt.
+
+\subsubsection{Inläsningen av data från Excel}
+\begin{verbnobox}[\tiny\arabic{VerbboxLineNo}\small\hspace{1ex}:\footnotesize]
+%Inläsning
+[num] = xlsread('matdata') ;
+V1=num(1:25,1);
+p1=round(151975.*V1.^(-1.331),1);
+V2=num(1:25,4);
+p2=round(208884.*V1.^(-1.39),1);
+V3=num(1:25,7);
+p3=round(245855.*V1.^(-1.42),1)
+\end{verbnobox}
+
+Här sker inläsning av den 25 första mätvärdena för kolumnerna \tt{V1}\rm, \tt{V2} \rm och \tt{V3}\rm
+~från kolumnerna 1, 4 och 7 ur excel-filen.
+Inspekterandes excel-dokumentet så såg vi att Matlabs inläsning av p-kolumnerna resulterade
+i annorlunda decimalvärden än värdena i Excel, t.ex. 115.9 resulterade i 115.899233
+så därför gjordes en avrundning til en decimal så att Matlabs värden skulle överensstämma
+med de värden som gavs i Excel-dokumentet.
+
+\subsubsection{Konditionering av data}
+\begin{verbnobox}[\tiny\arabic{VerbboxLineNo}\small\hspace{1ex}:\footnotesize]
+%Konditionering till m^3 och Pa
+V1=V1.*10^(-6);
+V2=V2.*10^(-6);
+V3=V3.*10^(-6);
+p1=p1.*10^(3);
+p2=p2.*10^(3);
+p3=p3.*10^(3);
+\end{verbnobox}
+
+Volymerna gavs i $\rm{cm}^3$ så därför multiplicerade vi $10^{-6}$ för att erhålla
+$\rm{m}^3$ och vidare så gavs trycket i kP så därför multiplicerade vi med $1000$
+för att få enheten i Pa.
+
+\subsubsection{Kurvanpassning}
+\begin{verbnobox}[\tiny\arabic{VerbboxLineNo}\small\hspace{1ex}:\footnotesize]
+% Kurvanpassning
+fit_fcn = @(b,V) V.^b(1).* exp(b(2));
+
+RNCF = @(b) norm(p1 - fit_fcn(b,V1));                                   
+B1 = fminsearch(RNCF, [1;1]); 
+\end{verbnobox}
+
+Kurvanpassningsfunktionen hittades på nätet. Den är onödigt kompakt och därför svår att förstå. Rad nr. \tt{2}\rm är en \tt{fit\_function}\rm är en pekare
+till en anonym funktion genom symbolen \tt @.\rm ~Funktionen har argumentslistan
+\tt{(b,V)}\rm där \tt{b}\rm ~är en vektor med två rader och en kolumn. Därefter följer
+funktionskroppen som verkar måste stå på samma rad men detta är oklart.
+Funktionskroppen utgörs av mönsterfunktionen som programmet skall försöka matcha till
+\verb|V.^b(1).* exp(b(2))|
+\noindent Inkluderar man inte exponentialfunktionen så kommer matchningen
+att bli ca $1.38$ för samtliga fall, se \ref{fig:figures}.
+Ytterliggare en funktionspekare definieras \tt{RNCF}\rm ~som endast tar ett enda argument
+och där funktionskroppen  bildar normen av differensen mellan verkliga mätdata \tt{p1}\rm
+~och de funktionsvärden som matlab försöker anpassa så att skillnaden blir så liten som möjligt.
+Argumentet till \tt{RNCF}\rm ~blir en inparameter till anropet av \tt{fit\_function}\rm
+~och där andra inparametern är volymsvektorn. Detta är den s.k. kostnadsfunktionen
+~som nästa funktionsanrop söker minimera.
+\tt{B1 = fminsearch(RNCF, [1;1])}\rm. ~Två inparametrar, den ena är pekaren RNCF och den andra
+är startvärden för optimeringen.
+Utdata från  för Matlabsamtliga tre körningar ges nedan där Matlabs radbrytningar har editerats bort.
+\begin{verbnobox}[\footnotesize]
+B1 =
+   -1.3310
+    0.4510
+B2 =
+   -1.3901
+   -0.0469
+B3 =
+   -1.4202
+   -0.2998
+\end{verbnobox}
+Första raden i varje kolumn är det eftersökta $\kappa$. Optimeraren har funnit
+att den funktion som best mappar förhållandet mellan $p$ och $V$ är funktionerna
+\begin{flalign}
+       	p_{1}&=\frac{e^{0.45}}{V^{1.331}_{1}} & \\
+        p_{2}&=\frac{e^{-0.0469}}{V^{1.3901}_{2}}&\\
+        p_{3}&=\frac{e^{-0.2998}}{V^{1.4202}_{3}} 
+\end{flalign}
+
+\subsubsection{Plottgenerering}
+\begin{verbnobox}[\tiny\arabic{VerbboxLineNo}\small\hspace{1ex}:\footnotesize]
+%plott
+figure(1)
+plot(V1, p1, 'pg')                                                       
+hold on
+plot(V1, fit_fcn(B1,V1))                                          
+hold off
+grid 
+B1
+\end{verbnobox}
+Optimerade heldragna kurvan och den diskreta kurvan.
+\subsubsection {Resultat av anpassningen}
+Vi tycker att vi har fått bra överensstämmelse med exponenterna som användes
+att generera datan.
+Medelvärdet med korrekt antal värdesiffror är 1.38.
+ \end{multicols}
+\section{Stirlingmaskinen}
+Sterlingmaskinen kördes dels som värmemotorprocess och dels som kylmaskin.
+\subsection{Värmemotorprocess}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c c c c||} 
+ \hline
+ M/mNm & n/rpm & T1$/^{o}$C &T1$/^{o}$C& $\rm{W_{pV}}$/mJ\\ [0.5ex] 
+\hline\hline
+0	& 982 &	163	& 74.8 & 200 \\
+2 &	945 &	169 &	77.7 &	201 \\
+4	& 908 &	168 &	78.7 &	205 \\
+6	& 860 &	177 &	77.5 &	210 \\
+8	& 817	& 177	& 77.1 &	216 \\
+10 &	745 &	178 &	76.5 & 221 \\
+12 &	752&	179&	76.3&	230\\
+14&	705&	185	&76.7&	238\\
+15&	650&	188&	76.9&	239\\
+17&	519&	190&	76.3&	243\\
+18&	555&	192&	75.5&	245\\
+20&	460&	195&	74.2&	246\\
+22&	380&	197&	72&	247\\
+23&	275&	201&	70.7&	235\\ [1ex] 
+ \hline
+\end{tabular}
+\caption{Givna mätdata värmemotorprocess}
+\label{table:1}
+\end{table}
+Utifrån givna mätdata enligt Tabell\ref{table:1} så skulle följande parametrar
+räknas ut. 
+$\rm{W_m}= 2\pi\cdot\rm{M}$ där M är det uppmätta momementet.
+Motormoment balanserar mot friktionsmomentet och har alltid enheten energi.
+$\rm{W_m}$ är det arbetet som motornaxeln åstadkommer under ett varv.
+Multiplikation av M med $2\pi$ radianer ändrar inte enheten hos $\rm{W_m}$ 
+därför att radianer har definierats såsom enhetslöst.
+Vi gör detta för att momentet förhåller sig till effekten P enligt $P=T\cdot\omega$
+vilket är den fjärde kolumnen.
+
+ $\rm{W_{pV}}$ är volymändringsarbetet , det arbetet som omslutes av kretskurvan.
+Det tekniska arbetet $W_{t}$ förhåller sig till friktionsarbetet $\rm{W_{fr}}$ enligt
+\begin{equation}
+W_{t} = \rm{W_m} + \rm{W_{fr}}
+\end{equation}
+
+Slutligen beräknades verkningsgraden såsom Carnotprocess $\eta_c$ 
+enligt standardformeln.
+\begin{equation}
+\eta_c = 1-\frac{T_2}{T_1}
+\end{equation}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c c c c ||} 
+ \hline
+$\rm{W_m}$/mJ & $\rm{W_{fr}}$/mJ & f/Hz & $\rm{P_m}$/mW & $\eta_c$\\ [0.5ex] 
+\hline\hline
+	0	&200&	16.37&	0&	0.20\\
+12.5&	194.72&	15.75&	98.96&	0.207\\
+25.1&	179.87&	15.13&	380.34&	0.202\\
+37.7&	191.15&	14.33&	270.18&	0.221\\
+50.3&	165.73&	13.62&	684.45&	0.222\\
+62.8&	189.58&	12.42&	390.08&	0.225\\
+75.40&	154.60&	12.53&	944.99&	0.227\\
+87.9&	194.02&	11.75	&516.79&	0.236\\
+94.3&	144.75&	10.83&	1021.02&	0.241\\
+106.81&	189.59&	8.65&	461.97&	0.246\\
+113.10&	131.90&	9.25&	1046.15&	0.251\\
+125.7&	183.17&	7.67&	481.71&	0.258\\
+138.2&	108.77&	6.33&	875.46&	0.266\\
+144.5&	162.74&	4.58&	331.18&	0.275\\[1ex] 
+ \hline
+\end{tabular}
+\caption{Beräknade parametrar från mätdata värmemotorprocess}
+\label{table:2}
+\end{table}
+%    \lipsum[2]
+%    \bigskip
+%    \noindent   % Very important in case that \parindent is not 0pt
+%    \begin{minipage}{\linewidth}
+%      \centering
+%      \includegraphics[width=3.5cm]{fig1.eps}
+%      \captionof{figure}{Figure caption}
+%      \label{fig:cc}
+%    \end{minipage}
+%    \lipsum[3]
+
+Uppgiften var att generera två plottar där den ena innehåller de tre
+graferna för 
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{Stirlingmotor.eps}
+    \caption{ $\rm{W_m}$/mJ, $\rm{W_{fr}}$/mJ och $\rm{W_{pV}}$/mJ}
+    \label{fig:first}
+\end{subfigure}
+%\hfill
+\begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{eta.eps}
+    \caption{Karnotverkningsgraden $\eta_c$}
+    \label{fig:second}
+\end{subfigure}
+
+\caption{Stirlingsmotorns karaktäristik}
+\label{fig:fig2}
+\end{figure}
+
+\begin{multicols}{2}
+\vfill\null
+\columnbreak
+
+\subsection{Stirlingmaskinen såsom kylprocess}
+Avseende Stirlingmaskinen såsom kylmaskin så blev resultatet
+att varvtalet 240 rpm gav temperaturerna $T_{1}=34^{\rm{o}}\rm{C}$
+och $T_{2}=17^{\rm{o}}\rm{C}$. Köldfaktorn $\epsilon$ är formelmässigt inversen av
+$\eta$ och om vi får anta att Stirlingmaskinen är lika effektiv som kylmaskin som den är 
+som värmemotorprocess så skulle vi kunna approximera $\epsilon$ trots att vi inte har
+några mätdata för 240 rpm. Om vi tar $\eta_{c}(240\rm{rpm})\approx 0.25$
+så får vi $\epsilon = 4$.
+
+Om vi använder formeln för köldfaktorn $\epsilon$ så skulle vi kunna
+säga något den bortförda värmen $Q_{bort}$
+\begin{equation}
+\epsilon = \bigg|{\frac{Q_{bort}}{W_{t}}}\bigg|
+\end{equation}
+
+
+Vi vet att $W_{t}=W_{pV}$ så om vi tar värdet som vi har för 275 rpm
+och extrapolerar det till 240 rpm som höftas till 220 mJ så
+får ${Q_{bort}}=4\cdot 0.22 =0.88 J$.Med detta värde kanske vi kan säga något
+om volymen på isolerboxen.Vi gissar rumstemperaturen till $22^{\rm{o}}\rm{C}$
+Densiteten $\rho$ för luft är 1.2kg/$\rm{m}^3$ och isolerboxens process sker
+under konstant tryck.$c_p$ för luft är 1010 J/$\rm{kg}\cdot\rm{K}$.
+Isolerboxens process måste kunna ses som ett öppet system eftersom
+varm luft diffunderar in och blandas med den kalla luften där vissa luftmolekyler
+läcker ut genom springor. Inget arbete sker, $c_1$, $c_2$ och lägesenergi
+försummas i Bernoulliformuleringen av TD1. 
+
+\begin{flalign*}
+       Q_{bort} &=I_2-I_1 &\\
+       Q_{bort} &= m\cdot c_{p}\cdot(T_{rum}-T_{kall}) &\\
+       0.88&= \rho\cdot V\cdot (22-17) &\\
+      0.88&=1.2\cdot V \cdot 1010\cdot 5
+\end{flalign*}
+Vilket ger $V=0.88/(1.2\cdot 5\cdot 1010 )=0.000145215 \rm{{m}^3}$.
+Tredje roten ur ger ett sidomått på 0.052 m dvs ca 5 cm.
+Var är felet lärare! Är det ett teoretiskt misstag eller är det
+inverkande faktorer som inte medtagits?
+
+\end{multicols}
+
+\listoffigures
+\listoftables
+\tableofcontents
+
+\end{document}

@@ -1,0 +1,73 @@
+\documentclass[twocolumn]{book}
+\usepackage{parskip}
+\usepackage[bottom=1in]{geometry}
+\usepackage{multicol}
+\setlength{\columnsep}{0.9cm}
+\usepackage{supertabular}
+\usepackage[utf8]{inputenc}
+%\usepackage[swedish]{babel}
+\usepackage[T1]{fontenc}
+%\usepackage{geometry}   % Setup for page and paper dimensions
+\usepackage{wrapfig}
+\usepackage{subfigure}
+\usepackage{caption}
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  tableposition=top
+}
+
+\usepackage[swedish]{babel}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black,
+    pdfborder = {0 0 0}
+}
+\usepackage{verbatimbox}
+\usepackage{graphicx}   
+\usepackage{lipsum}  
+\usepackage{amsmath}
+\usepackage{listings} 
+\usepackage{tikz}
+\usepackage{float}
+\newcommand*\mycirc[1]{%
+\begin{tikzpicture}[baseline={(0,-0.1)}]
+\node[draw,circle,inner sep=1pt] {#1};
+\end{tikzpicture}}
+
+\newcommand*\textcircle[1]{\textcircled{\raisebox{0.14em}{#1}}}
+
+\usepackage{ifthen}
+
+%\title{Övningsuppgifter Energiteknik}
+%\author{Lasse Karagiannis}
+%\date{Maj 2022} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+         
+\mathchardef\mhyphen="2D
+
+\usepackage{silence}
+\WarningFilter{latex}{Underfull}
+\WarningFilter{latex}{Overfull}
+\WarningFilter{latex}{Text page}
+\usepackage{subfiles}
+\begin{document}
+%\begin{multicols}{2}
+
+%\maketitle
+
+
+%\subfile{5189b.tex}
+
+%\subfile{5.4-28.tex}
+%\subfile{T20210602-5.tex}
+%\subfile{T202106020-5.tex}
+\subfile{E2021_06_02.tex}
+\subfile{E2021_08_18.tex}
+\subfile{E2021_10_09.tex}
+%\end{multicols}
+\end{document}

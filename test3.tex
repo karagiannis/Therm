@@ -1,0 +1,59 @@
+%\documentclass[11pt,a4paper]{book}
+\documentclass[twocolumn]{book}
+\usepackage{parskip}
+\usepackage[bottom=1in]{geometry}
+\usepackage{supertabular}
+\usepackage[utf8]{inputenc}
+%\usepackage{geometry}   % Setup for page and paper dimensions
+\usepackage{wrapfig}
+\usepackage{caption}
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  tableposition=top
+}
+\usepackage[swedish]{babel}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks,
+citecolor=black,
+filecolor=black,
+linkcolor=black,
+urlcolor=black,
+pdfborder = {0 0 0}
+}
+\usepackage{subcaption}
+\usepackage{verbatimbox}
+\usepackage{multicol}
+\usepackage{graphicx}   
+\usepackage{lipsum}  
+\usepackage{amsmath}
+\usepackage{listings}   
+\usepackage{tikz}
+%\usepackage{pgfplots}
+%\pgfplotsset{compat=newest} 
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+ 
+\begin{document}
+\begin{tikzpicture}
+	%\draw (0,0) grid (4,4);
+	% x-axis
+	\draw [thick,->] (0,0) -- (4,0);
+	% y-axis
+	\draw [thick,->] (0,0) -- (0,4);
+	% x-axis label
+	\node at (-0.5,4){$p$};
+	% y-axis label
+	\node at (4,-0.5){$V$};
+	% origin point
+	\draw [color=black,fill=black] (0,0) circle (0.05);
+	%Isokor uppvärmning
+	\draw [thick](1,1.5) -- (1,3.5);
+
+	\draw [thick] (1,3.5) .. controls (1,1) and (2,1) .. (3,0.5);
+	\draw [thick] (3,0.5) -- (1,1.5);
+\end{tikzpicture}
+
+
+\end{document}

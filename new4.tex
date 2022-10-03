@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[svgnames]{xcolor}
+
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{lipsum}
+
+\input{insbox}
+\makeatletter
+\@InsertBoxMargin =1em
+\makeatother
+
+\begin{document}
+
+lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+\begin{wrapfigure}[5]{l}{0cm}
+\fcolorbox{white}{white}{$\begin{aligned}
+            x & = 2 \\
+            3y & = 4
+        \end{aligned}$}
+\end{wrapfigure}
+lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+
+\InsertBoxR{2}{\fcolorbox{white}{white}{$\begin{aligned}
+            x & = 2 \\
+            3 y& = 4
+        \end{aligned}$}}
+\lipsum
+
+\end{document} 

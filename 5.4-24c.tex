@@ -1,0 +1,316 @@
+\input tugboat.sty
+\input macros
+\pageno = 1
+
+\noindent \bf 5.4-24\rm ~I en luftbehandlingsanl\"aggning avser man
+att bereda $\dot{V}=11\ 250\rm{m}^3$/h luft med relativ
+fuktighet $\varphi_{m}=0.4$ och $t_{m}=21^{\rm{o}}$C. F\"or
+att uppn\aa\ detta blandas uteluft av $t_{o}=0^{\rm{o}}$C och
+$\varphi_{o}=0.7$ med fr\aa nluft av $t_{2}=24^{\rm{o}}$C och
+$\varphi_{2}=0.5$. Barometerst\aa ndet \"ar 1013 mbar.
+Ber\"akna a) den temperatur till vilken
+uteluften m\aa ste v\"armas f\"or att blandningstilst\aa ndet
+skall kunna uppn\aa s; b) f\"orh\aa llandet
+mellan volym-\hfill\break fl\"oden av uteluft och fr\aa nluft;
+c) den f\"or uteluftens uppv\"armning erforderliga
+v\"armeeffekten
+
+\medskip
+%\halign{ 	   #&#&#  			 			& \quad\hfil	#&# 							\cr
+%\it{Givet}\rm 	&{}&{} 						& 			    {}&\it{S\"okt}\rm	\cr
+%%$\dot{V}$		&=&$11\ 250{\rm{m}}^3$/h    & 		{}&{}%$\t_{o}$ 					\cr
+%$\varphi_{m}$	&=&0.4	     				& 				{}&$\dot{V_{o}}$ 	\cr
+%$t_{m}$			&=&$21^{\rm{o}}$C   	& 				{}&$\Delta i_{o}$	\cr
+%$t_{o}$			&=&$0^{\rm{o}}$C    	& 				{}&{} 				\cr
+%$\varphi_{o}$	&=&0.7						& 				{}&{} 				\cr
+%$t_{2}$			&=&$24^{\rm{o}}$C   	& 				{}&{} 				\cr
+%$\varphi_{2}$	&=&0.5						& 				{}&{} 				\cr
+%p				&=&1.013 bar				& 				{}&{} 				\cr
+
+%}
+
+%\halign{\hfil#\unskip&{}#{}&#\hfil & \quad\hfil     #&#\hfil                 \cr
+%\it Givet   	&{}&{}              &               {}&\it S\"okt   \cr
+%$\varphi_{m}$   &=&0.4             &               {}&$\dot{V_{o}}$    \cr
+%$t_{m}$         &=&$21^{\rm o}$C   &               {}&$\Delta i_{o}$   \cr
+%$t_{o}$         &=&$0^{\rm o}$C    &               {}&$t_{o}'$        \cr
+%$\varphi_{o}$   &=&0.7             &               {}&{}               \cr
+%$t_{2}$         &=&$24^{\rm o}$C   &               {}&{}               \cr
+%$\varphi_{2}$   &=&0.5             &               {}&{}               \cr
+%p               &=&1.013 bar       &               {}&{}               \cr
+%}
+
+
+%\halign{	   #&#&#               	& \quad\hfil     #&#\hfil           \cr
+%\it Givet  		&{}&            &               {}&\it S\"okt   	\cr
+%$\varphi_{m}$ 	&=&0.4              &               {}&$\dot{V_{o}}$    \cr
+%$t_{m}$      	&=&$21^{\rm o}$C   	&               {}&$\Delta i_{o}$   \cr
+%$t_{o}$         &=&$0^{\rm o}$C    &               {}&$t_{o}'$        	\cr
+%$\varphi_{o}$   &=&0.7             &               {}&{}               \cr
+%$t_{2}$         &=&$24^{\rm o}$C   &               {}&{}               \cr
+%$\varphi_{2}$   &=&0.5             &               {}&{}               \cr
+%p               &=&1.013 bar       &               {}&{}               \cr
+%}
+
+%\halign{\hfil#\unskip&${}#{}$&#\unskip\hfil   & \quad\hfil    #&#\unskip\hfil   \cr
+%\multispan{2}{\it Givet}&{}              &               {}&\it S\"okt   \cr
+%$\varphi_{m}$   &=&0.4              &               {}&$\dot{V_{o}}$    \cr
+%$t_{m}$         &=&$21^{\rm o}$C   &               {}&$\Delta i_{o}$   \cr
+%$t_{o}$         &=&$0^{\rm o}$C    &               {}&$t_{o}'$        \cr
+%$\varphi_{o}$   &=&0.7              &               {}&{}               \cr
+%$t_{2}$         &=&$24^{\rm o}$C   &               {}&{}               \cr
+%$\varphi_{2}$   &=&0.5              &               {}&{}               \cr
+%p               &=&1.013 bar        &               {}&{}               \cr
+%}
+
+
+%\bigskip
+
+%\halign{#\unskip\hfil&${}#{}$&#\hfil      	& \quad\hfil     #&#		\hfil    	\cr
+%\multispan{2}{\it Givet}&{}              	&               {}&\it S\"okt   		\cr
+%$\varphi_{m}$   &=&0.4              		&               {}&$\dot{V_{o}}$    	\cr
+%$t_{m}$         &=&$21^{\rm o}$C   		&               {}&$\Delta i_{o}$   	\cr
+%$t_{o}$         &=&$0^{\rm o}$C    		&               {}&$t_{o}'$        		\cr
+%$\varphi_{o}$   &=&0.7              		&               {}&{}               	\cr
+%$t_{2}$         &=&$24^{\rm o}$C   		&               {}&{}               	\cr
+%$\varphi_{2}$   &=&0.5              		&               {}&{}               	\cr
+%p               &=&1.013 bar        		&               {}&{}               	\cr
+%}
+\bigskip %Denna är samma som ovan men utan {}
+\halign{#\unskip\hfil &#&#	\hfil      		& \quad\hfil     #&#		\hfil    				\cr
+\multispan{2}{\it Givet}&	              	&               {}&\it S\"okt   					\cr
+$\dot{V_{m}}$		&=&$11\ 250 \rm{m}^3$/h &               {}&$t_{o}'$    						\cr
+$\varphi_{m}$   &=&0.4              		&               {}&$\Delta i_{o}$   				\cr
+$t_{m}$         &=&$21^{\rm o}$C   			&               {}&$\dot{V_{o}}/\dot{V_{2}}$  		\cr
+$t_{o}$         &=&$0^{\rm o}$C    			&               {}&{}        						\cr
+$\varphi_{o}$   &=&0.7              		&               {}&{}               				\cr
+$t_{2}$         &=&$24^{\rm o}$C   			&               {}&{}               				\cr
+$\varphi_{2}$   &=&0.5              		&               {}&{}               				\cr
+p               &=&1.013 bar        		&               {}&{}               				\cr
+}
+
+%\bigskip
+
+%\halign{#\unskip\hfil                	& \quad\hfil    #&#\unskip\hfil      \cr
+%\it Givet               				&               {}&\it S\"okt   	\cr
+%$\varphi_{m} =0.4 $             		&               {}&$\dot{V_{o}}$    \cr
+%$t_{m}       =21^{\rm o}{\rm C}$   	&               {}&$\Delta i_{o}$   \cr
+%$t_{o}       =0^{\rm o}{\rm C}$    	&               {}&$t_{o}'$        	\cr
+%$\varphi_{o} =0.7    $          		&               {}&{}               \cr
+%$t_{2}       =24^{\rm o}{\rm C}$   	&               {}&{}               \cr
+%$\varphi_{2} =0.5$              		&               {}&{}               \cr
+%${\rm p}     =1.013 \,{\rm bar}$       &               {}&{}               \cr
+%}
+
+\medskip
+\noindent Blandningsfl\"odet $\dot{V_{m}}$ \"ar givet, vilket enligt allm\"anna gaslagen \"ar
+$$\dot{V}_{m} = {{\dot{m}_{m}\cdot R_{m}\cdot T_{m}}\over p } \eqno (1)$$
+
+\medskip
+\noindent Blandningsluften \"ar fuktig s\aa\ d\"arf\"or best\aa massfl\"odet $\dot{m}_{m}$ av massfl\"odet torrluft och vatten.
+$$\eqalignno{\dot{m}_{m}&=\dot{m}_{mL}+\dot{m}_{m\HTWO} \cr
+					 {}&=\dot{m}_{mL}+x_{m}\cdot\dot{m}_{mL} & (2) \cr
+}
+$$
+
+\medskip
+\noindent Blandningsluften torra luftf\"ode respektive dess vatteninneh\aa ll kommer fr\aa n fr\aa nluften och
+tillluften
+$$\eqalignno{m_{mL}&=m_{oL}+m_{2L}  &(3)\cr
+	   m_{m\HTWO}&=m_{o\HTWO}+m_{2\HTWO} &(4)\cr
+}$$
+
+\medskip
+\noindent Enligt teorin f\"or blandning s\aa\ m\aa ste punkterna f\"or blandningsluften, till-luften och fr\aa nluften
+ligga p\aa \hfill\break en r\"at linje i Mollier-diagrammet. Uteluften m\aa ste ges energitillskottet $\Delta i_{o}$
+s\aa dant att temperaturen $t_{o}'$ uppn\aa s. Proportionerna fr\aa nluft och tilluft best\"a-mmer \"aven vattenm\"angden
+$x_m$ kg \HTWOO per kg torrluft.
+$$\eqalignno{
+i_{m} &= {{m_{oL}\cdot i'_{o} + m_{2L}\cdot i_{2}}\over{m_{oL}+m_{2L}}}  &(5)\cr
+x_{m} &= {{m_{oL}\cdot x_{o} + m_{2L}\cdot x_{2}}\over{m_{oL}+m_{2L}}} 	 &(6)\cr
+}
+$$
+
+\medskip 
+\noindent F\"or att kunna ber\"akna $t_{o}'$ och $i'_{o}$ numeriskt s\aa\ m\aa ste vi l\"osa ut $i'_{o}$ ur (5) men 
+med $m_{oL}$ och $m_{2L}$ i uttryckt n\aa got som givits ur problemformuleringen.
+Vi kan dock inte
+l\"osa ut $\dot{m}_{m}$ ur (1) d\"arför att vi inte k\"anner $R_{m}$ som beror blir olika beroende p\aa\ 
+proportionerna torrluft och vatten i blandningen. Vi har dock en graf \"over densiteten p\aa\ sid. 455
+och det m\aa ste g\"alla att 
+$$\rho = {m\over V} = {\dot{m}\over\dot{V}}={\dot{m}_m\over\dot{V}_m} = {{\dot{m}_{m\HTWO}+\dot{m}_{mL}}\over\dot{V}_m} \eqno (7)$$
+s\aa\ ett delm\aa l m\aa ste vara att uttrycka $m_{oL}$ och $m_{2L}$ som funktion av $m_{m}$
+
+Vi b\"or kunna skriva om uttrycket f\"or $x_m$ utan att beh\"ova skriva $\dot{x}_m$ d\"arf\"or att dess proportioner
+m\aa ste vara en konstant.
+$$\eqalignno{
+x_{m}&= {{\dot{m}_{oL}\cdot x_{o} + \dot{m}_{2L}\cdot x_{2}}\over{\dot{m}_{oL}+\dot{m}_{2L}}} & (8)\cr
+(\dot{m}_{oL}+\dot{m}_{2L})\cdot x_{m}&= \dot{m}_{oL}\cdot x_{o} + \dot{m}_{2L}\cdot x_{2}\cr
+}$$
+
+\medskip
+\noindent Samlar ihop $\dot{m}_{oL}$ p\aa\ v\"anster sida och $\dot{m}_{2L}$ p\aa\ h\"oger
+$$\eqalignno{
+\dot{m}_{oL}\cdot x_{m}-\dot{m}_{oL}\cdot x_{o} &=\dot{m}_{2L}\cdot x_{2}-\dot{m}_{2L})\cdot x_{m}\cr
+\dot{m}_{oL}\cdot ( x_{m}-x_{o} )&=\dot{m}_{2L}\cdot(x_{2}-x_{m})\cr
+\dot{m}_{oL}&=\dot{m}_{2L}\cdot{{x_{2}-x_{m}}\over {x_{m}-x_{o}}}   &(9)\cr}$$
+
+\medskip
+\noindent Vi har en relation mellan $\dot{m}_{oL}$ och $\dot{m}_{2L}$ i (8) men vi beh\"over uttrycka b\aa da dessa
+i n\aa got som givits ur problemst\"allningen. Volymfl\"odet per tidsenhet $\dot{V}_m$ har givits som vi kan relatera till
+massfl\"odet $\dot{m}_m$.
+%
+$\dot{m}_{m}$ har givits indirekt genom (1).
+
+\medskip
+\noindent Vi l\"oser ut $m_{mL}$ ur (2) och substituerar i (3)
+$$\eqalignno{{\dot{m}_m\over(1+x_m)}&= \dot{m}_{oL} + \dot{m}_{2L}\cr
+\dot{m}_m&=(\dot{m}_{oL} + \dot{m}_{2L})\cdot (1+x_m) \cr
+}$$
+
+\medskip
+\noindent Vi anv\"ander (8) f\"or att f\aa\ bort $\dot{m}_{oL}$ och kommer d\aa\ f\aa\ 
+en relation mellan $\dot{m}_m$ och $\dot{m}_{2L}$. Anv\"ander vi sedan (8) s\aa\ f\aa r vi också
+en relation mellan $\dot{m}_{oL} $ och $\dot{m}_m$ och har d\aa\ f\aa t vad vi var ute efter, n\"amligen
+att uttrycka  $\dot{m}_{oL} $ och $\dot{m}_{2L}$ i n\aa got bekant.
+$$\eqalignno{
+\dot{m}_m&=\Bigl(\dot{m}_{2L}\cdot{{x_{2}-x_{m}}\over {x_{m}-x_{o}}} + \dot{m}_{2L}\Bigr)\cdot (1+x_m)\cr
+\dot{m}_m&=\dot{m}_{2L}\cdot\Bigl({{x_{2}-x_{m}}\over {x_{m}-x_{o}}}+1 \Bigr)\cdot (1+x_m) & (10) \cr
+}$$ 
+
+\medskip
+\noindent Nu kan vi v\"anda p\aa\  (10) l\"osa ut  $\dot{m}_{2L}$ 
+$$\eqalignno{
+\dot{m}_{2L}&={\dot{m}_m \over {\Bigl({{x_{2}-x_{m}}\over {x_{m}-x_{o}}}+1 \Bigr)\cdot (1+x_m)} } & (11) \cr
+}$$ 
+
+\medskip
+\noindent Vi anv\"ander nu (8) p\aa\  (11)
+$$\eqalignno{
+\dot{m}_{oL}&={{{{x_{2}-x_{m}}\over {x_{m}-x_{o}}}}\cdot {\dot{m}_m \over {\Bigl({{x_{2}-x_{m}}\over {x_{m}-x_{o}}}+1 \Bigr)\cdot (1+x_m)} } }& (12)\cr
+}$$ 
+
+\medskip
+\noindent Grafen på sid. 455 ger att densiteten $\rho$ f\"or den fuktiga luften \"ar ca 1.2kg/$\rm{m}^3$
+
+$$\dot{m}_m = \rho \cdot \dot{V}_{m} = 1.2\cdot{11250\over 3600}= 3.75 \rm{kg/m}^3 \eqno(13)$$
+
+\medskip
+\noindent H\"arifr\aa n \"ar det en enkel sak att f\aa\  numeriska v\"arden p\aa\ $x_{o},x_{2}$ och $x_m$
+som beh\"ovs f\"or att f\aa\ siffror p\aa\ ${m}_{oL}$ och ${m}_{2L}$ som beh\"ovs f\"or att f\aa\ en siffra
+p\aa\ $i'_{o}$ och slutligen temperaturen $t_{o}'$. Detta g\"ors med ekv. $(5.4.4-6\rm{a})$ p\aa\ sid. 455.
+$$\eqalignno{
+x_{o}&=0.621\cdot{{\varphi_{o}\cdot p_{\HTWO}"(0^{\rm{o}}\rm{C})}\over {p-{\varphi_{o}\cdot p_{\HTWO}"(0^{\rm{o}}\rm{C})}}}\cr
+x_{o}&=0.621\cdot{{0.7\cdot 0.006107}\over {1.013 -0.7\cdot  0.006107 }} \cr
+x_{o}&=0.0026318 &(13) \cr
+}$$
+
+$$\eqalignno{
+x_{2}&=0.621\cdot{{\varphi_{2}\cdot p_{\HTWO}"(24^{\rm{o}}\rm{C})}\over {p-{\varphi_{2}\cdot p_{\HTWO}"(24^{\rm{o}}\rm{C})}}}\cr
+x_{2}&=0.621\cdot{{0.5\cdot 0.029824}\over {1.013 -0.5\cdot  0.02984 }} \cr
+x_{2}&=0.0092781 &(14) \cr
+}$$
+
+$$\eqalignno{
+x_{m}&=0.621\cdot{{\varphi_{m}\cdot p_{\HTWO}"(21^{\rm{o}}\rm{C})}\over {p-{\varphi_{m}\cdot p_{\HTWO}"(21^{\rm{o}}\rm{C})}}}\cr
+x_{m}&=0.621\cdot{{0.4\cdot 0.024855}\over {1.013 -0.4\cdot  0.024855 }} \cr
+x_{m}&=0.0061552 &(15) \cr
+}$$
+
+\medskip
+\noindent Nu kan $\dot{m}_{oL}$ och $\dot{m}_{oL}$ ber\"aknas
+$$\eqalignno{
+\dot{m}_{2L}&={\dot{m}_m \over {\Bigl({{x_{2}-x_{m}}\over {x_{m}-x_{o}}}+1 \Bigr)\cdot (1+x_m)} } & (11) \cr
+          {}&={3.75 \over{\Bigl({{0.0092781-0.0061552}\over {0.0061552-0.0026318}}+1 \Bigr)\cdot (1+0.0061552)} } & \cr
+		  {}&=1.9758 \cr
+}$$ 
+
+$$\eqalignno{
+\dot{m}_{oL}&=\dot{m}_{2L}\cdot{{x_{2}-x_{m}}\over {x_{m}-x_{o}}}   & (8)\cr
+			&=1.9758\cdot{{0.0092781-0.0061552}\over {0.0061552-0.0026318}}\cr
+			&=1.7512\cr			
+}$$
+
+\medskip
+\noindent Eftersom (5) \"ar en relatio innehållandes kvoter av massor s\aa\ m\aa ste samma
+likhet g\"alla om kvoterna \"ar uttrycks som kvoter mellan massfl\"oden om dessa inte varierar med tiden. 
+Masskvoterna i h\"oger-ledet av (5) m\aa ste ju g\"alla
+f\"or alla tidpunkter. F\"olj-ande m\aa ste d\"arf\"or ocks\aa\  vara sant 
+$$\eqalignno{
+i_{m} &= {{\dot{m}_{oL}\cdot i'_{o} + \dot{m}_{2L}\cdot i_{2}}\over{\dot{m}_{oL}+\dot{m}_{2L}}}  &(14)\cr
+}
+$$
+
+\medskip
+\noindent Vi ber\"aknar f\"orst $i_{m}$ och $i_{2}$ enligt ekv. $5.4.4-9$ i boken f\"or att sedan l\"osa ut
+$i'_{o}$ som d\"arefter kommer ge oss $t_{o}'$ med hj\"alp av samma formel
+$$\eqalignno{
+i_{m} &= t + x_{m}\cdot(2500 + 1.86\cdot t_{m})\cr
+      &= 21 + 0.0061552\cdot (2500+1.86\cdot 21) \cr
+      &= 36.628 \rm{\ kJ\ per\ kg\ torrluft}
+}
+$$
+
+$$\eqalignno{
+i_{2} &= t + x_{2}\cdot(2500 + 1.86\cdot t_{2})\cr
+      &= 24 + 0.0092781\cdot (2500+1.86\cdot 24) \cr
+      &= 47.609 \rm{\ kJ\ per\ kg\ torrluft}
+}
+$$
+
+\medskip
+\noindent Nu kan $i'_{o}$ l\"osas ut. Multiplcera (14) med n\"amnaren och subtrahera $\dot{m}_{2L}\cdot i_{2}$
+%$$\eqalignno{
+%i_{m} &= {{\dot{m}_{oL}\cdot i'_{o} + \dot{m}_{2L}\cdot i_{2}}\over{\dot{m}_{oL}+\dot{m}_{2L}}}  &(14)\cr
+%}
+%$$
+$$\eqalignno{
+i_{m}\cdot({\dot{m}_{oL}+\dot{m}_{2L}})- \dot{m}_{2L}\cdot i_{2} &= {\dot{m}_{oL}\cdot i'_{o} }\cr
+}
+$$
+$$\eqalignno{
+ i'_{o} &= {{i_{m}\cdot({\dot{m}_{oL}+\dot{m}_{2L}})- \dot{m}_{2L}\cdot i_{2}}\over  \dot{m}_{oL}}\cr
+        &= {{36.628\cdot({1.7512+1.9758})- 1.9758\cdot 47.609}\over  1.7512}\cr
+		&=24.239 \rm{\ kJ\ per\ kg\ torrluft} \cr
+}
+$$
+Vi v\"ander p\aa\ ekvation ekv. $5.4.4-9$ i boken f\"or att sedan l\"osa ut $t_{o}'$.
+$$\eqalignno{
+i'_{o} &= t_{o}' + x_{o}\cdot(2500 + 1.86\cdot t_{o}')\cr
+ i'_{o}- x_{o}\cdot 2500  &=  t_{o}' + x_{o}\cdot 1.86\cdot t_{o}'\cr
+ t_{o}' &= {{i'_{o}- x_{o}\cdot 2500}\over {1+x_{o}\cdot 1.86}}\cr
+ 		&= {{24.239 - 0.0026318\cdot 2500}\over {1+0.0026318\cdot 1.86}}\cr
+		&=17.573^{ \rm{o}}\rm{C}
+}
+$$
+
+\medskip
+\noindent Svaret p\aa\ fr\aa ga a) \"ar $17.573^{ \rm{o}}\rm{C}$. Fr\aa ga c) avseende
+den erfoderliga v\"armeeffekten f\aa s som skillnaden mellan $i'_{o}$ och $i_{o}$ multiplicerat
+med torrluftsfl\"odet $\dot{m}_{oL}$. Vi beh\"over r\"akna ut $i_o$
+
+$$\eqalignno{
+i_{o} &= t_{o} + x_{o}\cdot(2500 + 1.86\cdot t_{o})\cr
+      &= 0 +0.0026318\cdot(2500 +1.86\cdot 0)\cr
+	  &=6.5795 \rm{\ kJ\ per\ kg\ torrluft} \cr
+}
+$$
+$$\eqalignno{
+\dot{Q} &= \dot{m}_{oL}\cdot(i'_{o}-i_{o})\cr
+   		&=1.7512\cdot(24.239-6.5795)\cr
+		&=30.925 \rm{\ kW} \cr
+}
+$$
+
+\medskip
+\noindent Avseende att ber\"akna f\"orh\aa llandet
+mellan volym-\hfill\break fl\"oden av uteluft och fr\aa nluft s\aa\ handlar detta endast
+om att teckna allmänna gaslagen f\"or den torra uteluften och den den torra fr\aa nluft
+
+ 
+ 
+
+
+
+
+\bye

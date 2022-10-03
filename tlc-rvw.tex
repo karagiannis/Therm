@@ -1,0 +1,331 @@
+%%% ====================================================================
+%%%  @TeX-file{
+%%%     filename        = "tlc-rvw.tex",
+%%%     version         = "1.03",
+%%%     date            = "28 February 1995",
+%%%     time            = "16:17:08 EST",
+%%%     author          = "David M. Jones and David E. Wald",
+%%%     address         = "MIT Laboratory for Computer Science
+%%%                        Room NE43-316
+%%%                        545 Technology Square
+%%%                        Cambridge, MA 02139
+%%%                        USA",
+%%%     telephone       = "(617) 253-5936",
+%%%     FAX             = "(617) 253-3480",
+%%%     checksum        = "37536 331 2213 15684",
+%%%     email           = "dmjones@theory.lcs.mit.edu",
+%%%     codetable       = "ISO/ASCII",
+%%%     keywords        = "",
+%%%     supported       = "yes",
+%%%     docstring       = "The checksum field above contains a CRC-16
+%%%                        checksum as the first value, followed by the
+%%%                        equivalent of the standard UNIX wc (word
+%%%                        count) utility output of lines, words, and
+%%%                        characters.  This is produced by Robert
+%%%                        Solovay's checksum utility.",
+%%%  }
+%%% ====================================================================
+\documentstyle{ltugboat}
+
+\vol 15, 2.
+\issdate June 1994.
+
+\setcounter{page}{1}
+\PrelimDraftfalse
+
+\def\LaTeXe{\LaTeX{}\kern.05em2$_{\textstyle\varepsilon}$}
+
+\title{\Review: The \LaTeX{} Companion\thanks{This review originally
+appeared in {\sl TUGboat\/} 15(2):103--106, June 1994, and appears
+here by permission.}}
+
+\author{David M. Jones}
+
+\address{MIT Laboratory for Computer Science\\
+545 Technology Square\\
+Cambridge, MA 02139}
+
+\netaddress{dmjones@theory.lcs.mit.edu}
+
+\author{David E. Wald}
+
+\address{MIT Laboratory for Computer Science\\
+545 Technology Square\\
+Cambridge, MA 02139}
+
+\netaddress{wald@theory.lcs.mit.edu}
+
+\date{June 1, 1994}
+
+\begin{document}
+
+\maketitle
+
+\begin{verse}
+{\em In darkness languishes the precious stone.\\
+When will its excellence enchant the world?}\\
+\hfill -- Barry Hughart
+\end{verse}
+
+\medskip
+
+\reviewitem
+\revauth{Michel Goossens, Frank Mittelbach and Alexander Samarin}
+\revtitle{The {\LaTeX} Companion}
+\revpubinfo{Addison-Wesley, 1993. xxx + 492~pp.\ + index
+(36~pp.)  ISBN 0-201-54199-8}
+\endreviewitem
+
+Without question, this book is absolutely necessary for all who use,
+support, modify, or rue the day that they first heard of
+\LaTeX.  You should all run right out and get a copy.  We'll wait.
+
+\centerline{\vdots}
+
+\noindent
+All set?  Good.  Now we'll tell you what you've just acquired.
+
+\bigskip
+
+\noindent
+In recent years there has been an explosion of books about \TeX{} and
+\LaTeX, and the majority of \LaTeX{} users have probably gone from
+gnashing their teeth over the lack of supplemental documentation to
+gnashing their teeth over which of the numerous books on the market
+are the best investment for their time and money.  Let there be no
+confusion about the \booktitle{\LaTeX{} Companion}: the
+\booktitle{Companion} belongs next to the \booktitle{\TeX book} and the
+\LaTeX{} manual as a book that every \LaTeX{} user should have
+available.
+
+Since its introduction in the early 80's, \LaTeX{} has been the center
+of a flurry of grassroots development, with contributors world-wide
+producing a variety of style files and support packages, many of which
+have become basic necessities to any well-dressed \LaTeX{}
+installation.  In recent years, this development has reached a minor
+crisis point, with several slightly incompatible variants of \LaTeX{}
+coming into common use.
+
+As anyone who has been following the recent development of \LaTeX{}
+knows, the \LaTeX3 team, spearheaded by Frank Mittelbach, Chris
+Rowley, and Rainer Sch\"opf, has taken over the development of \LaTeX,
+and is in the process of producing a completely rewritten
+\LaTeX3~[1--3].
+%\cite{Mittelbach:TB13-1-96-101,Mittelbach:TB10-4-681-690,Mittelbach:TB12-1-74-79}.
+Recently, the \LaTeX3 team, in an attempt to head off the
+aforementioned crisis, announced the imminent release of a single
+``state of the art'' version of \LaTeX, to be designated \LaTeXe.
+
+Along with the ``crisis of infinite formats,'' there has been a
+corresponding crisis in documentation.  Beyond Lamport's manual
+presenting the original core of \LaTeX, there has been no central
+source that systematically presented the most useful style files, the
+most necessary support programs and, frankly, the best-known tricks
+for convincing \LaTeX{} to behave itself.  Even when documentation
+exists, it has tended to circulate in the form of electronic folklore,
+or unpublished documents distributed with individual macro packages,
+supplemented by the occasional TUGboat article.  The unfortunate
+result is that many worthy packages have languished in darkness for
+lack of widely-available documentation.
+
+In other words, there exists a gap between the numerous \LaTeX\
+primers now available on the market and the various comprehensive
+lists and archives of \LaTeX\ styles now available electronically.
+The authors of this book have taken it upon themselves to fill this
+gap.  They are in a particularly good position to do so, as one of
+them is a member of the core \LaTeX3 team, and all three have
+extensive experience in supporting \LaTeX{} and initiating novices
+into its deeper mysteries.
+
+The \booktitle{Companion} is designed to be used alongside Lamport's
+\LaTeX{} manual; as such, it assumes that the reader is familiar with
+the core system as documented in Lamport's book, and gives frequent
+cross-references to the \LaTeX{} manual.  Each chapter focuses on a
+different aspect of document preparation and presents a
+carefully-chosen combination of packages, utilities, and less
+well-known features, which allow the user to transcend the boundaries
+of Lamport's book.
+
+Since Chapter~2 is in many ways typical of the rest of the book, we
+will give an extended description of it to illustrate the flavor of
+documentation provided by the \booktitle{Companion}.  Chapter~2 covers
+the physical and logical structure of a \LaTeX{} document.  The first
+section covers the package and class interface to \LaTeXe, which
+replaces the \verb+\documentstyle+ interface of \LaTeX~2.09.
+Succeeding sections cover sectioning commands, tables of contents, and
+cross-referencing.
+
+The discussion of sectioning commands begins with a brief summary of
+their syntax and use, covering roughly the material presented in
+Section~2.2.3 and Appendix~C.3 of the \LaTeX{} manual.  The authors
+don't stop here, however; they also present a wealth of information on
+modifying the behavior of sectioning commands and on defining new
+ones.  (As anyone who has supported
+\LaTeX{}---or who has read any newsgroup or mailing list where
+\LaTeX{} is discussed---well knows, this is exactly the sort of
+question that is asked repeatedly by \LaTeX{} users, and which the
+determined user has usually had to delve into the
+\LaTeX{} source code to answer.)
+
+The discussion of tables of contents follows similar lines, and is
+supplemented by a description of the nonstandard {\tt minitoc}
+package, which can be used to create a separate table of contents at
+the beginning of each chapter of a book or report.
+
+The chapter concludes with a description of \LaTeX's cross-referencing
+features, together with descriptions of the {\tt varioref} and {\tt
+xr} packages, which support alternate styles of referencing and
+cross-references between documents.
+
+Moving along, Chapter~3 covers the formatting of paragraphs, lists,
+and other structures; Chapter~4 discusses page layout; and Chapters~5
+and~6 cover tables and floats in depth.
+
+Chapter~7 presents the first of several major extensions to \LaTeX,
+the \LaTeXe{} font selection scheme.  Since the New Font Selection
+Scheme is the single largest difference between \LaTeX~2.09 and
+\LaTeXe, this chapter is perhaps the most important in the book.  The
+scheme is indeed described well, with the first sections providing a
+detailed introduction to the basic vocabulary and features of font
+selection, and the latter sections providing full details for those
+wishing to install new fonts.
+
+Chapter~8, entitled ``Higher Mathematics,'' will be welcome reading to
+anyone to whom mathematical typesetting is of more than passing
+interest.  It has long been a source of amusement---and occasional
+chagrin---that although \TeX's {\em raison d'\^etre\/} has always been
+its superb support for mathematical typesetting, \LaTeX{} hardly
+represents an advantage over plain \TeX{} in this regard, and has been
+lagging behind \AmSTeX{} for some years.  Thus, we were delighted when
+\AmS-\LaTeX{} was released a few years ago, and are now pleased that
+\AmS-\LaTeX{} has been fully legitimized by Chapter~8, which provides a
+detailed introduction to and description of the various features of
+this excellent package.  Armed with the \booktitle{\LaTeX{}
+Companion}, we will now continue with renewed vigor our campaign to
+see that every
+\LaTeX{} site installs the \AmS-\LaTeX{} package and brings \LaTeX{}
+out of the dark ages of mathematical typesetting.\footnote{While
+approving of the sentiment, one of the authors of this review would
+like to distance himself from the evangelical tone of this paragraph,
+and wishes to remind the other author that there are several
+full-flavored decaffeinated coffees on the market.}
+
+Chapter~9 addresses another issue that has been of burning interest in
+the \LaTeX{} community for several years---support for typesetting in
+languages other than American English. The authors briefly discuss the
+handling of alternate character sets and encodings such as the Cork
+standard, and then discuss the Babel package of Johannes Braams, as
+well as an alternate package for French typography.
+
+Chapter~10 discusses several extensions to \LaTeX's picture
+environment, a subject which leads naturally to Chapter~11, which
+tackles the complex issues surrounding the use of PostScript in
+\LaTeX{} documents.  This chapter covers such diverse topics as choice
+of DVI device driver, use of PostScript graphics, installation of
+PostScript fonts, and various PostScript \verb+\special+ effects.
+
+Chapters~12 and~13 discuss two auxiliary programs that, although they
+are an essential part of any \LaTeX{} installation, have long suffered
+from a dearth of documentation.  Chapter~12 describes {\tt makeindex}
+in detail, bringing into print for essentially the first time a
+comprehensive discussion not only of the \LaTeX{} interface for
+creating indexes and the use of the {\tt makeindex} program itself,
+but also of {\tt makeindex} style files and packages for producing
+documents with multiple indexes.  Chapter~13 is a similarly detailed
+description of \BibTeX.  This chapter, in fact, seems capable of
+replacing not only Appendix~B of Lamport's book, but also much of the
+documentation supplied with \BibTeX{} itself, since it not only
+subsumes them, but also offers an extensive list of non-standard
+\BibTeX{} style files.
+
+Chapter~14 describes the {\tt doc} system for writing self-documenting
+\LaTeX{} code and perhaps should have been merged with Appendix~A,
+which is an overview of \LaTeX{} for writers of packages and classes.
+Appendix~B rounds the book out with a brief introduction to the major
+resources for \TeX{} users.  The first part of this appendix describes
+the major electronic sites that serve as sources for \TeX{} software
+(which will surely be appreciated by those whose curiosity has been
+piqued by the rest of the book), and the second gives a list of \TeX{}
+user groups throughout the world.  Regrettably missing is a separate
+list of the major mailing lists and newsgroups devoted to \TeX.
+
+The book ends with a well-annotated bibliography that should serve as
+a valuable introduction to the literature, a well-constructed---though
+occasionally incomplete---index, and a combination colophon and
+empirical software study that should prove enlightening to anyone who
+has used or is contemplating using
+\LaTeX{} to produce a book-length document.
+
+Although we recommend the \booktitle{Companion} without hesitation,
+there are a few caveats worth mentioning.  The major one is that this
+book, like \LaTeXe, is a snapshot of a rapidly changing system.  As
+such, there are aspects of the book that are sure to be confusing to
+anyone who has not been following the development of \LaTeX{} over the
+past several years, and there are other aspects that are likely to
+become obsolete in the near future.  For example, although the
+discussion of \BibTeX\ in Chapter~13 is comprehensive as of this
+writing, this may cease to be true with the eventual release of
+\BibTeX~1.0.  Similarly, all of the cross-references to the \LaTeX{}
+manual refer to the first edition of the book, which will soon be
+superceded.\footnote{A related  problem is that
+\LaTeXe\ itself is still under development.  Although a stable
+distribution version of \LaTeXe{} is expected soon, many of the
+packages described in the \booktitle{Companion} have not yet been
+converted into \LaTeXe{} packages, which is likely to cause
+discrepancies between the actual behavior of some packages and the
+behavior described in the \booktitle{Companion}.}
+
+Another problem is that the very thoroughness of the book may
+occasionally present obstacles for readers who merely want to use the
+new features documented in the book without becoming intimately
+acquainted with all aspects of the new system.  For example, although
+the description of the font system in Chapter~7 is very detailed, this
+means that the reader is ten pages into the chapter before being told
+the now-preferred method for changing to an italic font.  Similarly,
+there is no place where the reader can turn to find a brief summary of
+the most important differences between \LaTeX~2.09 and
+\LaTeXe.\footnote{Most likely, this reflects the history of the book:
+When the book was begun, there were no plans to release a new version
+of \LaTeX, and indeed, production of the book was well underway before
+the necessity of \LaTeXe{} became evident.} We hope that with the
+release of a new edition of Lamport's \LaTeX{} manual, beginners will
+be able to find the answers to their questions with less difficulty.
+
+A final difficulty with the book results from \LaTeX{} itself.
+Experience with \LaTeX{} has taught us that there are many perfectly
+reasonable things a user wishes to do that are impossible in
+\LaTeX{} with the published interface.  Such tasks often require a use
+of \LaTeX's internal commands, and the \booktitle{Companion} has to
+deal with this.  To their credit, the authors have handled this
+delicate situation with tact, presenting a careful selection of
+internals without requiring the user to understand the entire
+composition of the program.  Naturally, it is our hope that with the
+eventual release of \LaTeX3, this last difficulty (and, dare we hope,
+the need for two separate manuals) will disappear.
+
+\bibliographystyle{plain}
+
+%% \bibliography{/b/dmjones/tex/misc/tugboat}
+
+\begin{thebibliography}{1}
+
+\bibitem{Mittelbach:TB13-1-96-101}
+Frank Mittelbach and Chris Rowley.
+\newblock {{\LaTeX\ 2.09 $\hookrightarrow$ \LaTeX3}}.
+\newblock {\sl TUGboat}, 13(1):96--101, April 1992.
+
+\bibitem{Mittelbach:TB10-4-681-690}
+Frank Mittelbach and Rainer Sch{\"{o}}pf.
+\newblock {{With \LaTeX\ into the Nineties}}.
+\newblock {\sl TUGboat}, 10(4):681--690, December 1989.
+
+\bibitem{Mittelbach:TB12-1-74-79}
+Frank Mittelbach and Rainer Sch{\"{o}}pf.
+\newblock {{Towards \LaTeX\ 3.0}}.
+\newblock {\sl TUGboat}, 12(1):74--79, March 1991.
+
+\end{thebibliography}
+
+\makesignature
+
+\end{document}
